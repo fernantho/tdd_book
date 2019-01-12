@@ -1,3 +1,4 @@
+from unittest import skip
 from lists.models import Item, List
 from django.test import TestCase
 from lists.forms import ItemForm
@@ -10,6 +11,7 @@ from lists.forms import (
 
 
 class ItemFormTest(TestCase):
+
     # def test_form_renders_item_text_input(self):
     #     form = ItemForm()
     #     self.fail(form.as_p())
@@ -49,3 +51,9 @@ class ItemFormTest(TestCase):
         form = ExistingListItemForm(for_list=list_, data={'text': 'no twins!'})
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['text'], [DUPLICATE_ITEM_ERROR])
+
+    def test_form_save(self):
+        list_ = List.objects.create()
+        form = ExistingListItemForm(for_list=list_, data={'text': 'hi'})
+        new_item = form.save(for_list=list_)
+        self.assertEqual(new_item, Item.objects.all()[0])
