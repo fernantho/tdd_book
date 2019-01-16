@@ -4,7 +4,10 @@ Description=Gunicorn server for SITENAME
 [Service]
 Restart=on-failure
 
-User=nando WorkingDirectory=/home/nando/sites/SITENAME/source ExecStart=/home/nando/sites/SITENAME/virtualenv/bin/gunicorn \
---bind unix:/tmp/SITENAME.socket \ superlists.wsgi:application
-    [Install]
-    WantedBy=multi-user.target
+User=nando
+WorkingDirectory=/home/nando/sites/SITENAME/source ExecStart=/home/nando/sites/SITENAME/virtualenv/bin/gunicorn \
+  --bind unix:/tmp/SITENAME.socket \
+  superlists.wsgi:application
+
+[Install]
+  WantedBy=multi-user.target
