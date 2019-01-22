@@ -1,12 +1,12 @@
 [Unit]
-Description=Gunicorn server for SITENAME
+Description=Gunicorn server for sln8-staging.hopto.org
 
 [Service]
 Restart=on-failure
-
 User=nando
-WorkingDirectory=/home/nando/sites/SITENAME/source ExecStart=/home/nando/sites/SITENAME/virtualenv/bin/gunicorn \
-  --bind unix:/tmp/SITENAME.socket \
+WorkingDirectory=/home/nando/sites/sln8-staging.hopto.org/source
+ExecStart=/home/nando/sites/sln8-staging.hopto.org/virtualenv/bin/gunicorn \
+  --bind unix:/tmp/sln8-staging.hopto.org.socket \
   superlists.wsgi:application
 
 [Install]
